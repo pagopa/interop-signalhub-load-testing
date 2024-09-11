@@ -1,0 +1,35 @@
+{
+  "name": "interop-signalhub-performance-test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "target/bundle",
+  "scripts": {
+    "clean": "rimraf target",
+    "format": "prettier --write \"**/*.ts\"",
+    "check": "tsc --noEmit",
+    "build": "tsc --noEmit && gatling build --typescript",
+    "recorder": "gatling recorder --typescript",
+    "pull": "gatling run --typescript --simulation pull",
+    "push": "gatling run --typescript --simulation push",
+    "status:pull": "gatling run --typescript --simulation status.pull",
+    "status:push": "gatling run --typescript --simulation status.push"
+  },
+  "dependencies": {
+    "@gatling.io/core": "3.11.7",
+    "@gatling.io/http": "3.11.7",
+    "@types/uuid": "^10.0.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@gatling.io/cli": "3.11.7",
+    "@types/node": "^22.5.4",
+    "prettier": "3.3.2",
+    "rimraf": "6.0.0",
+    "typescript": "5.4.5"
+  },
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

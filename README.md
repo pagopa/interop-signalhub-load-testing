@@ -1,1 +1,0 @@
-# interop-signalhub-load-testing

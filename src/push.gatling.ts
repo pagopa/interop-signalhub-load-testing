@@ -8,7 +8,9 @@ import {
   givenUsersDistributedInADuration,
   users,
   voucher,
-  eserviceId
+  eserviceId,
+  injectedUsersFromStartingRateToTargetRate,
+  profile
 } from "./lib/setup";
 
 export default simulation((setUp) => {
@@ -39,7 +41,10 @@ export default simulation((setUp) => {
     .exec(useCasePushingSignals);
 
   // Define the injection profile
-  setUp(pushingSignalsScenario.injectOpen(givenUsersDistributedInADuration)).protocols(
-    httpProtocol
-  );
+  const injectedProfile =
+    profile === "increment"
+      ? injectedUsersFromStartingRateToTargetRate
+      : givenUsersDistributedInADuration;
+
+  setUp(pushingSignalsScenario.injectOpen(injectedProfile)).protocols(httpProtocol);
 });

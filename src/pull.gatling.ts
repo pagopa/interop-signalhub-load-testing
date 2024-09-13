@@ -5,6 +5,8 @@ import {
   duration,
   eserviceId,
   givenUsersDistributedInADuration,
+  injectedUsersFromStartingRateToTargetRate,
+  profile,
   users,
   voucher
 } from "./lib/setup";
@@ -30,7 +32,10 @@ export default simulation((setUp) => {
   const pullingSignalsScenario = scenario("Pull").exec(useCasePullSignals);
 
   // Define the injection profile
-  setUp(pullingSignalsScenario.injectOpen(givenUsersDistributedInADuration)).protocols(
-    httpProtocol
-  );
+  const injectedProfile =
+    profile === "increment"
+      ? injectedUsersFromStartingRateToTargetRate
+      : givenUsersDistributedInADuration;
+
+  setUp(pullingSignalsScenario.injectOpen(injectedProfile)).protocols(httpProtocol);
 });

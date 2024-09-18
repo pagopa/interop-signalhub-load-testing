@@ -33,4 +33,4 @@ export const givenUsersDistributedInADuration = rampUsers(users).during(duration
 export const injectedUsersFromStartingRateToTargetRate = incrementUsersPerSec(incrementUsers)
   .times(incrementTimes)
   .eachLevelLasting(eachLevelLasting)
-  .startingFrom(startingUsers); // Double
+  .startingFrom(startingUsers);

@@ -28,7 +28,7 @@ export default simulation((setUp) => {
   // Write the scenario PUSH
   const useCasePushingSignals = exec(
     http("Push")
-      .post(`/signals`)
+      .post(`/v1/push/signals`)
       .header("Authorization", `Bearer ${voucher}`)
       .asJson()
       .body(StringBody(buildSignalPayload))
@@ -48,3 +48,5 @@ export default simulation((setUp) => {
 
   setUp(pushingSignalsScenario.injectOpen(injectedProfile)).protocols(httpProtocol);
 });
+
+

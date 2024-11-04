@@ -24,7 +24,7 @@ export default simulation((setUp) => {
   // Write the scenario PULL
   const useCasePullSignals = exec(
     http("Pull")
-      .get(`/signals/${eserviceId}`)
+      .get(`/v1/pull/signals/${eserviceId}`)
       .header("Authorization", `Bearer ${voucher}`)
       .queryParam("size", size)
       .queryParam("signalId", signalId)

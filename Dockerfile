@@ -14,9 +14,8 @@ RUN npm install -g pnpm
 
 WORKDIR /app
 COPY . /app/
-
+RUN chown -R node:node /app
+USER node
 RUN pnpm install
 
-CMD ["sleep","infinity"]
-
-
+ENTRYPOINT ["/bin/bash"]

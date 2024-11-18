@@ -13,16 +13,25 @@
     "pull": "gatling run --typescript --simulation pull",
     "push": "gatling run --typescript --simulation push",
     "status:pull": "gatling run --typescript --simulation status.pull",
-    "status:push": "gatling run --typescript --simulation status.push"
+    "status:push": "gatling run --typescript --simulation status.push",
+    "upload-report": "node --loader ts-node/esm ./src/s3-client/upload.ts",
+    "push:report": "npm run push && npm run upload",
+    "pull:report": "npm run pull && npm run upload"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.685.0",
+    "@aws-sdk/s3-request-presigner": "^3.685.0",
     "@gatling.io/core": "3.11.7",
     "@gatling.io/http": "3.11.7",
     "@types/uuid": "^10.0.0",
+    "archiver": "^7.0.1",
+    "dotenv-flow": "^4.1.0",
+    "ts-node": "^10.9.2",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@gatling.io/cli": "3.11.7",
+    "@types/archiver": "^6.0.3",
     "@types/node": "^22.5.4",
     "prettier": "3.3.2",
     "rimraf": "6.0.0",

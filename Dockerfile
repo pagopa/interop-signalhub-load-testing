@@ -1,4 +1,4 @@
-FROM node:current@sha256:8f96a3600bff22cddf63db753affacaea31e194dda0018c793ee33ad3a325c4a
+FROM node:current
 
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
@@ -18,4 +18,5 @@ RUN chown -R node:node /app
 USER node
 RUN pnpm install
 
-ENTRYPOINT ["/bin/bash"]
+CMD ["sleep","infinity"]
+

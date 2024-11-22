@@ -15,8 +15,8 @@
     "status:pull": "gatling run --typescript --simulation status.pull",
     "status:push": "gatling run --typescript --simulation status.push",
     "upload-report": "node --loader ts-node/esm ./src/s3-client/upload.ts",
-    "push:report": "npm run push && npm run upload",
-    "pull:report": "npm run pull && npm run upload"
+    "push:report": "npm run push && npm run upload-report",
+    "pull:report": "npm run pull && npm run upload-report"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.685.0",

@@ -27,7 +27,7 @@ function archiveReport(inputDir: string, outputDir: string): Promise<void> {
     return new Promise((resolve, reject) => {
         const output = fs.createWriteStream(outputDir);
         const archive = archiver("zip", {
-            zlib: { level: 9 } // Sets the compression level.
+            zlib: { level: 9 } //  Sets the compression level.
         });
 
         output.on("close", () => {

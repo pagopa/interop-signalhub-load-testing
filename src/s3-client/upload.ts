@@ -55,7 +55,7 @@ function deleteArchivedReport(inputDir: string) {
 }
 
 async function uploadReportsOnS3(filePath: string, folderName: string) {
-    console.log("Uploading report on S3 bucket...");
+    console.log("Uploading report on S3 bucket..");
 
     const s3Client = new S3Client();
 

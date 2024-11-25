@@ -2,8 +2,8 @@ import * as fs from "fs";
 import archiver from "archiver";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import dotenvFlow from "dotenv-flow";
+import path from "path";
 
-const inputDir = `${process.cwd()}/target/gatling`;
 
 dotenvFlow.config();
 
@@ -33,6 +33,14 @@ function archiveReport(inputDir: string, outputDir: string): Promise<void> {
         output.on("close", () => {
             console.log(`Folder has been archived ${archive.pointer()} total bytes`);
             resolve();
+        });
+
+        archive.on('warning', (err) => {
+            if (err.code === 'ENOENT') {
+                console.warn('Warn:', err);
+            } else {
+                reject(err);
+            }
         });
 
         archive.on("error", (err) => {
@@ -70,18 +78,21 @@ async function uploadReportsOnS3(filePath: string, folderName: string) {
     };
 
     try {
-        const data = await s3Client.send(new PutObjectCommand(uploadParams));
+        await s3Client.send(new PutObjectCommand(uploadParams));
         console.log("File uploaded successfully");
     } catch (error) {
         console.error("Error uploading file:", error);
     }
 }
 
-const folderName = getLastModifiedFolder(inputDir);
-const outputDir = `${inputDir}/${folderName}.zip`;
+const folderSource = path.join(process.cwd(), 'target', 'gatling');
+const folderName = getLastModifiedFolder(folderSource);
+
+const inputDir = path.join(folderSource, folderName as string);
+const outputDir = path.join(process.cwd(), 'target', 'gatling', `${folderName}.zip`);
 
 folderName &&
-    archiveReport(folderName, outputDir).then(async () => {
+    archiveReport(inputDir, outputDir).then(async () => {
         await uploadReportsOnS3(outputDir, folderName);
         deleteArchivedReport(outputDir);
     });

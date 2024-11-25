@@ -1,4 +1,4 @@
-FROM node:current
+FROM node:23.3.0@sha256:a2fea8b0b74b6e828caa6d83f4b2a0dcb2eb1ff90f30205c32f7bd36ddf976c4
 
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \

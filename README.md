@@ -2,11 +2,11 @@
 
 This is a repository containing source code for load testing application with Gatling.
 
-## Getting started
+## Introduction
 
 Goal of this repository is understand how signal-hub ecosystem work under a high stress condition. To do this we choose an "Open workload" model. Load test start with few users until reach an high number of users with goal to stress application.
 
-## Prerequisites
+## Getting started
 
 In order to execute load test you need to build a Docker image with:
 this:

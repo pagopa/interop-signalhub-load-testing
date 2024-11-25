@@ -8,6 +8,7 @@ on:
       - "*"
     paths:
       - "src/**"
+      - "Dockerfile"
       - ".github/workflows/build-push.yaml"
 
 jobs:

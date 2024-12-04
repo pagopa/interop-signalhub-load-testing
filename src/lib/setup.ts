@@ -7,6 +7,9 @@ import {
 
 export const baseUrl = getEnvironmentVariable("BASE_URL", "http://localhost:3001");
 
+export const pushApiVersion = getEnvironmentVariable("PUSH_API_VERSION", "1.0");
+export const pullApiVersion = getEnvironmentVariable("PULL_API_VERSION", "1.0");
+
 export const users = parseInt(getParameter("users", "1"));
 export const duration = parseInt(getParameter("duration", "5"));
 

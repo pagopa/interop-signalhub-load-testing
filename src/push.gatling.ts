@@ -10,7 +10,8 @@ import {
   voucher,
   eserviceId,
   injectedUsersFromStartingRateToTargetRate,
-  profile
+  profile,
+  pushApiVersion
 } from "./lib/setup";
 
 export default simulation((setUp) => {
@@ -28,7 +29,7 @@ export default simulation((setUp) => {
   // Write the scenario PUSH
   const useCasePushingSignals = exec(
     http("Push")
-      .post(`/v1/push/signals`)
+      .post(`/${pushApiVersion}/push/signals`)
       .header("Authorization", `Bearer ${voucher}`)
       .asJson()
       .body(StringBody(buildSignalPayload))

@@ -7,6 +7,7 @@ import {
   givenUsersDistributedInADuration,
   injectedUsersFromStartingRateToTargetRate,
   profile,
+  pullApiVersion,
   users,
   voucher
 } from "./lib/setup";
@@ -24,7 +25,7 @@ export default simulation((setUp) => {
   // Write the scenario PULL
   const useCasePullSignals = exec(
     http("Pull")
-      .get(`/v1/pull/signals/${eserviceId}`)
+      .get(`/${pullApiVersion}/pull/signals/${eserviceId}`)
       .header("Authorization", `Bearer ${voucher}`)
       .queryParam("size", size)
       .queryParam("signalId", signalId)

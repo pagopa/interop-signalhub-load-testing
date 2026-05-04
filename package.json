@@ -27,7 +27,7 @@
     "archiver": "^7.0.1",
     "dotenv-flow": "^4.1.0",
     "ts-node": "^10.9.2",
-    "uuid": "^10.0.0"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@gatling.io/cli": "3.11.7",
